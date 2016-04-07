@@ -1,3 +1,8 @@
+/* Calculator.java
+ * April 7, 2016
+ * Abstract class for language nonterminals
+ */ 
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.List;

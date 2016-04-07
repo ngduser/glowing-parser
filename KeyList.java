@@ -1,3 +1,8 @@
+/* KeyList.java
+ * April 7, 2016
+ * Class which generates key list for language nonterminal indicators
+ */
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
