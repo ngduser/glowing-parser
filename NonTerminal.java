@@ -11,6 +11,15 @@ import java.util.ArrayList;
 
 public abstract class NonTerminal{
   Queue children= new LinkedList();
-  List<String> string_list= new ArrayList<>();
-
+  ArrayList<String> string_list;
+  String content="";
+  
+  NonTerminal(){
+    string_list= new ArrayList();
+  }
+  
+  public String toString(){
+    String str= new String("NONTERMINAL");
+    return str;
+  }
 }

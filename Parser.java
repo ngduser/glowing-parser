@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 class Parser{
   KeyList keys;
   Stack<NonTerminal> nt_stack;
-  Queue nt_queue;
+  Queue<NonTerminal> nt_queue;
   
   Parser()throws FileNotFoundException{
     keys= new KeyList(); 
@@ -25,9 +25,13 @@ class Parser{
   }
   
   public void testQueue(){
+    NonTerminal non_terminal=null;
     while (!nt_queue.isEmpty()){
-      System.out.println("R-"+ nt_queue.remove());
+      non_terminal= nt_queue.remove();
+      System.out.println(non_terminal+ " has- "+ non_terminal.content);
     }
+    
+    
   }
  
   public File chooseFile(){
@@ -49,36 +53,38 @@ class Parser{
       while(scan_file.hasNext()){
         String next= scan_file.next();
         
-        if (keys.start_keys.contains(next)){
-          NonTerminal non_terminal= createNT(next);
-          if (!nt_stack.isEmpty()){
-            NonTerminal nt_parent= nt_stack.peek();
-            nt_parent.children.add(non_terminal);
-          }
-          nt_stack.push(non_terminal);
-        }
-        
-        else{
-          if (!nt_stack.isEmpty()){
-    //        System.out.println("Stack Empty");
-            NonTerminal nt_parent= nt_stack.peek();
-            nt_parent.string_list.add(next);
-          }
+        if (!nt_stack.isEmpty()){
+          NonTerminal non_terminal= nt_stack.peek();
+          non_terminal.content= non_terminal.content+ next+ " ";
           
-          char[] c_next= next.toCharArray();
-          for (int i= 0; i< c_next.length; i++){
-            if (keys.end_keys.contains(c_next[i])){
-              NonTerminal non_terminal= nt_stack.pop();
-              System.out.println("Closing " + non_terminal + " with "+ c_next[i]);
-              nt_queue.add(non_terminal);
+          if (keys.start_keys.contains(next)){
+            NonTerminal nt_child= createNT(next);
+            non_terminal.children.add(nt_child);
+            nt_stack.push(nt_child);
+          }
+          else{
+            char[] c_next= next.toCharArray();
+            for (int i= 0; i< c_next.length; i++){
+              if (keys.end_keys.contains(c_next[i])){
+                non_terminal= nt_stack.pop();
+                System.out.println("Closing " + non_terminal + " with "+ c_next[i]);
+                if (!nt_stack.isEmpty()){
+                  NonTerminal nt_parent= nt_stack.peek();
+                  nt_parent.children.add(non_terminal);
+                }
+              
+                nt_queue.add(non_terminal);
+              }
             }
           }
         }
+        
+        else if (keys.start_keys.contains(next)){
+            NonTerminal nt_child= createNT(next);
+            nt_stack.push(nt_child);
+          }
       }
-      while (!nt_stack.isEmpty()){
-      }
-      }
-   
+   }
    //Creates and returns NonTerminal object from token
    private NonTerminal createNT(String next){
      Tokens token= Tokens.getName(next);

@@ -5,68 +5,69 @@ public enum Tokens{
 
     Window("Window"){
       public void setType(){
-        this.terminal_type= new Window();
+        this.terminal_type= new Gui();
       }
     },
     Layout("Layout"){
       public void setType(){
-        this.terminal_type= new Window();
-System.out.println("EXECUTING");
+        this.terminal_type= new Layout();
+
       }
     },
-    Flow("Flow:"){
+ /*   Flow("Flow:"){
       public void setType(){
-        this.terminal_type= new Window();
-System.out.println("EXECUTING");
+        this.terminal_type= new LayoutType();
+
       }
       
     },
     Grid("Grid"){
       public void setType(){
-        this.terminal_type= new Window();
-System.out.println("EXECUTING");
+        this.terminal_type= new LayoutType();
+
       }
       
     },
+    */
     Button("Button"){
       public void setType(){
-        this.terminal_type= new Window();
-System.out.println("EXECUTING");
+        this.terminal_type= new Widget();
+
       }
       
     },
     Group("Group"){
       public void setType(){
-        this.terminal_type= new Window();
-System.out.println("EXECUTING");
+        this.terminal_type= new Widget();
+
       }
       
     },
     Label("Label"){
       public void setType(){
-        this.terminal_type= new Window();
-System.out.println("EXECUTING");
+        this.terminal_type= new Widget();
+
       }
       
     },
     Panel("Panel"){
       public void setType(){
-        this.terminal_type= new Window();
-System.out.println("EXECUTING");
+        this.terminal_type= new Widget();
+
       }
       
     },
     Textfield("Textfield"){
       public void setType(){
-        this.terminal_type= new Window();
-System.out.println("EXECUTING");
+        this.terminal_type= new Widget();
+
       }
       
     },
     Radio("Radio"){
       public void setType(){
-        this.terminal_type= new Window();
-System.out.println("EXECUTING");
+        this.terminal_type= new RadioButton();
+
       }
       
     };
