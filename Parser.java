@@ -9,20 +9,25 @@ import java.util.LinkedList;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-
 class Parser{
   KeyList keys;
   Stack<NonTerminal> nt_stack;
-  Queue<NonTerminal> nt_queue;
+  Queue nt_queue;
   
   Parser()throws FileNotFoundException{
     keys= new KeyList(); 
     nt_stack= new Stack<>();
-    Queue<NonTerminal> nt_queue= new LinkedList<>();
+    nt_queue= new LinkedList();
     File file= chooseFile();
     Scanner scan_file= new Scanner(file);
     scanFile(scan_file);
-
+    testQueue();
+  }
+  
+  public void testQueue(){
+    while (!nt_queue.isEmpty()){
+      System.out.println("R-"+ nt_queue.remove());
+    }
   }
  
   public File chooseFile(){
@@ -53,26 +58,34 @@ class Parser{
           nt_stack.push(non_terminal);
         }
         
-        
-        
         else{
-          NonTerminal nt_parent= nt_stack.peek();
-          nt_parent.string_list.add(next);
+          if (!nt_stack.isEmpty()){
+    //        System.out.println("Stack Empty");
+            NonTerminal nt_parent= nt_stack.peek();
+            nt_parent.string_list.add(next);
+          }
+          
           char[] c_next= next.toCharArray();
           for (int i= 0; i< c_next.length; i++){
             if (keys.end_keys.contains(c_next[i])){
               NonTerminal non_terminal= nt_stack.pop();
+              System.out.println("Closing " + non_terminal + " with "+ c_next[i]);
               nt_queue.add(non_terminal);
             }
           }
         }
       }
-    }
+      while (!nt_stack.isEmpty()){
+      }
+      }
    
+   //Creates and returns NonTerminal object from token
    private NonTerminal createNT(String next){
-   
-  //   if (next.isEqualTo(
-     return null;
+     Tokens token= Tokens.getName(next);
+     token.setType();
+     
+     System.out.println("Opening "+ token.terminal_type+ " with "+ next);
+     return token.terminal_type;
    
    }
   
