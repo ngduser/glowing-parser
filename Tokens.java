@@ -11,6 +11,7 @@ public enum Tokens{
     Layout("Layout"){
       public void setType(){
         this.terminal_type= new Layout();
+        
 
       }
     },
@@ -31,7 +32,8 @@ public enum Tokens{
     */
     Button("Button"){
       public void setType(){
-        this.terminal_type= new Widget();
+       this.terminal_type= new Widget();
+       this.terminal_type.nt_parent= new Widgets();
 
       }
       
@@ -39,6 +41,7 @@ public enum Tokens{
     Group("Group"){
       public void setType(){
         this.terminal_type= new Widget();
+        this.terminal_type.nt_parent= new Widgets();
 
       }
       
@@ -46,6 +49,7 @@ public enum Tokens{
     Label("Label"){
       public void setType(){
         this.terminal_type= new Widget();
+        this.terminal_type.nt_parent= new Widgets();
 
       }
       
@@ -53,6 +57,8 @@ public enum Tokens{
     Panel("Panel"){
       public void setType(){
         this.terminal_type= new Widget();
+        this.terminal_type.nt_parent= new Widgets();
+        
 
       }
       
@@ -60,6 +66,7 @@ public enum Tokens{
     Textfield("Textfield"){
       public void setType(){
         this.terminal_type= new Widget();
+        this.terminal_type.nt_parent= new Widgets();
 
       }
       

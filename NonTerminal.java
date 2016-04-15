@@ -13,6 +13,7 @@ public abstract class NonTerminal{
   Queue children= new LinkedList();
   ArrayList<String> string_list;
   String content="";
+  NonTerminal nt_parent=null;
   
   NonTerminal(){
     string_list= new ArrayList();
@@ -21,5 +22,11 @@ public abstract class NonTerminal{
   public String toString(){
     String str= new String("NONTERMINAL");
     return str;
+  }
+  
+  public void getChildren(){
+    while (!children.isEmpty()){
+      System.out.print(" "+ children.remove());
+    }
   }
 }

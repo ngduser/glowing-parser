@@ -11,11 +11,6 @@ final class KeyList{
   List<String> start_keys;
   List<Character> end_keys;
   
-//  public enum nt_type{
-//      Window, Layout, Flow, Grid, Button, Group, Label, Panel, Textfield, Radio;
-//      public createNT
- // }
-  
   KeyList(){
     String start= "Window,Layout,Button,Group,Label,Panel,Textfield,Radio";
     String start_split[]= start.split(",");

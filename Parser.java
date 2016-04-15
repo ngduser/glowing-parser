@@ -28,10 +28,9 @@ class Parser{
     NonTerminal non_terminal=null;
     while (!nt_queue.isEmpty()){
       non_terminal= nt_queue.remove();
-      System.out.println(non_terminal+ " has- "+ non_terminal.content);
+      System.out.println(non_terminal+ " Content- "+ non_terminal.content);
+      non_terminal.getChildren();
     }
-    
-    
   }
  
   public File chooseFile(){
@@ -55,11 +54,25 @@ class Parser{
         
         if (!nt_stack.isEmpty()){
           NonTerminal non_terminal= nt_stack.peek();
+          System.out.println("NONTERMINTALRFAS "+ non_terminal);
           non_terminal.content= non_terminal.content+ next+ " ";
           
           if (keys.start_keys.contains(next)){
             NonTerminal nt_child= createNT(next);
+            
+            if (nt_child instanceof Widget){
+              non_terminal.children.add(nt_child.nt_parent);
+              
+              
+              nt_stack.push(nt_child.nt_parent);
+              
+              non_terminal= nt_stack.peek();
+              
+              
+            }
+             
             non_terminal.children.add(nt_child);
+            
             nt_stack.push(nt_child);
           }
           else{
@@ -68,12 +81,13 @@ class Parser{
               if (keys.end_keys.contains(c_next[i])){
                 non_terminal= nt_stack.pop();
                 System.out.println("Closing " + non_terminal + " with "+ c_next[i]);
-                if (!nt_stack.isEmpty()){
-                  NonTerminal nt_parent= nt_stack.peek();
-                  nt_parent.children.add(non_terminal);
+              /*  if (!nt_stack.isEmpty()){
+                  NonTerminal parent= nt_stack.peek();
+                  parent.children.add(non_terminal);
                 }
               
                 nt_queue.add(non_terminal);
+              */
               }
             }
           }
@@ -89,6 +103,7 @@ class Parser{
    private NonTerminal createNT(String next){
      Tokens token= Tokens.getName(next);
      token.setType();
+   //  if ((token.terminal_type instanceof Widget){
      
      System.out.println("Opening "+ token.terminal_type+ " with "+ next);
      return token.terminal_type;
