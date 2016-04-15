@@ -17,10 +17,14 @@ class Parser{
   Stack<NonTerminal> nt_stack;
   Queue<NonTerminal> nt_queue;
   
+  Queue<NonTerminal> test_queue;
+  
   Parser()throws FileNotFoundException{
     keys= new KeyList(); 
     nt_stack= new Stack<>();
     nt_queue= new LinkedList();
+    test_queue= new LinkedList();
+    
     File file= chooseFile();
     Scanner scan_file= new Scanner(file);
     scanFile(scan_file);
@@ -30,8 +34,8 @@ class Parser{
   //Test method to output structure
   public void testQueue(){
     NonTerminal non_terminal=null;
-    while (!nt_queue.isEmpty()){
-      non_terminal= nt_queue.remove();
+    while (!test_queue.isEmpty()){
+      non_terminal= test_queue.remove();
       System.out.println(non_terminal+ " Content- "+ non_terminal.content);
       non_terminal.getChildren();
     }
@@ -60,40 +64,53 @@ class Parser{
         
         if (!nt_stack.isEmpty()){
           NonTerminal non_terminal= nt_stack.peek();
-          System.out.println("NONTERMINTALRFAS "+ non_terminal);
           non_terminal.content= non_terminal.content+ next+ " ";
           
           if (keys.start_keys.contains(next)){
             NonTerminal nt_child= createNT(next);
             
-            if (nt_child instanceof Widget){
+  //          System.out.println("Parent- "+ non_terminal+ non_terminal.value+ " opening "+ nt_child+ nt_child.value);
+            
+            if ((nt_child instanceof Widget) && !(non_terminal instanceof Widget)){
               non_terminal.children.add(nt_child.nt_parent);
-              
-              
               nt_stack.push(nt_child.nt_parent);
+              test_queue.add(nt_child.nt_parent);
               
               non_terminal= nt_stack.peek();
-              
-              
+            }
+            
+            else{
+              while (non_terminal instanceof Widgets){
+                 System.out.println("FFFFFFFFFFClosing " + non_terminal + non_terminal.value);
+                nt_queue.add(non_terminal);
+                nt_stack.pop();
+                non_terminal= nt_stack.peek();
+              }
             }
              
             non_terminal.children.add(nt_child);
             
             nt_stack.push(nt_child);
+            test_queue.add(nt_child);
           }
           else{
             char[] c_next= next.toCharArray();
             for (int i= 0; i< c_next.length; i++){
               if (keys.end_keys.contains(c_next[i])){
                 non_terminal= nt_stack.pop();
-                System.out.println("Closing " + non_terminal + " with "+ c_next[i]);
-              /*  if (!nt_stack.isEmpty()){
+                while (non_terminal instanceof NTRecursive){
+                  nt_queue.add(non_terminal);
+                  non_terminal= nt_stack.pop();
+                }
+                
+                System.out.println("Closing " + non_terminal + non_terminal.value+ " with "+ c_next[i]);
+                if (!nt_stack.isEmpty()){
                   NonTerminal parent= nt_stack.peek();
                   parent.children.add(non_terminal);
                 }
               
                 nt_queue.add(non_terminal);
-              */
+              
               }
             }
           }
@@ -102,6 +119,7 @@ class Parser{
         else if (keys.start_keys.contains(next)){
             NonTerminal nt_child= createNT(next);
             nt_stack.push(nt_child);
+            test_queue.add(nt_child);
           }
       }
    }
@@ -111,7 +129,7 @@ class Parser{
      token.setType();
    //  if ((token.terminal_type instanceof Widget){
      
-     System.out.println("Opening "+ token.terminal_type+ " with "+ next);
+     System.out.println("Opening "+ token.terminal_type+ token.terminal_type.value+ " with "+ next);
      return token.terminal_type;
    
    }

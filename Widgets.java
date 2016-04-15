@@ -3,7 +3,7 @@
  * NonTerminal Class for Widgets
  */
 
-public class Widgets extends NonTerminal{
+public class Widgets extends NonTerminal implements NTRecursive{
   
   Widget widget= new Widget();
   Widgets widgets= null;

@@ -14,9 +14,11 @@ public abstract class NonTerminal{
   ArrayList<String> string_list;
   String content="";
   NonTerminal nt_parent=null;
+  int value;
   
   NonTerminal(){
     string_list= new ArrayList();
+    value= (int) (Math.random()*100);
   }
   
   public String toString(){
