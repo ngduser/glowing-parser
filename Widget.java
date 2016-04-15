@@ -1,3 +1,8 @@
+/* Gui.java
+ * April 14, 2016
+ * NonTerminal Class for Widget
+ */
+
 public class Widget extends NonTerminal{
   @Override
   

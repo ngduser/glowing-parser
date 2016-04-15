@@ -1,4 +1,7 @@
-
+/* Gui.java
+ * April 7, 2016
+ * Parser class takes data file and tokenizes it creating Parse Tree of Non-Terminals
+ */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.NullPointerException;
@@ -24,6 +27,7 @@ class Parser{
     testQueue();
   }
   
+  //Test method to output structure
   public void testQueue(){
     NonTerminal non_terminal=null;
     while (!nt_queue.isEmpty()){
@@ -33,6 +37,7 @@ class Parser{
     }
   }
  
+  //Data file selection
   public File chooseFile(){
     JFrame frame= new JFrame();
     JFileChooser chooser= new JFileChooser(".");
@@ -48,6 +53,7 @@ class Parser{
     }
   }
   
+   //Parses data file and builds tree
    public void scanFile(Scanner scan_file){
       while(scan_file.hasNext()){
         String next= scan_file.next();

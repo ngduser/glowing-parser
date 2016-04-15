@@ -1,3 +1,8 @@
+/* Gui.java
+ * April 14, 2016
+ * NonTerminal Class for Layout
+ */
+
 public class Layout extends NonTerminal{
   @Override
   
