@@ -4,6 +4,9 @@
  */
 
 public class Gui extends NonTerminal{
+  Gui(String content){
+    this.content= content;
+  }
   @Override
   
     public String toString(){

@@ -4,8 +4,11 @@
  */
 
 public class LayoutType extends NonTerminal{
-  
   Layout layout;
+  
+  LayoutType(String content){
+    this.content= content;
+  }
   @Override
     public String toString(){
     String str= new String("Layout Type");

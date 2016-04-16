@@ -5,12 +5,12 @@ public enum Tokens{
 
     Window("Window"){
       public void setType(){
-        this.terminal_type= new Gui();
+        this.terminal_type= new Gui("Window ");
       }
     },
     Layout("Layout"){
       public void setType(){
-        this.terminal_type= new Layout();
+        this.terminal_type= new Layout("Layout ");
         
 
       }
@@ -32,32 +32,32 @@ public enum Tokens{
     */
     Button("Button"){
       public void setType(){
-       this.terminal_type= new Widget();
-       this.terminal_type.nt_parent= new Widgets();
+       this.terminal_type= new Widget("Button ");
+       this.terminal_type.nt_parent= new Widgets("Widget ");
 
       }
       
     },
     Group("Group"){
       public void setType(){
-        this.terminal_type= new Widget();
-        this.terminal_type.nt_parent= new Widgets();
+        this.terminal_type= new Widget("Group ");
+        this.terminal_type.nt_parent= new Widgets("Widget ");
 
       }
       
     },
     Label("Label"){
       public void setType(){
-        this.terminal_type= new Widget();
-        this.terminal_type.nt_parent= new Widgets();
+        this.terminal_type= new Widget("Label ");
+        this.terminal_type.nt_parent= new Widgets("Widget ");
 
       }
       
     },
     Panel("Panel"){
       public void setType(){
-        this.terminal_type= new Widget();
-        this.terminal_type.nt_parent= new Widgets();
+        this.terminal_type= new Widget("Panel ");
+        this.terminal_type.nt_parent= new Widgets("Widget ");
         
 
       }
@@ -65,15 +65,15 @@ public enum Tokens{
     },
     Textfield("Textfield"){
       public void setType(){
-        this.terminal_type= new Widget();
-        this.terminal_type.nt_parent= new Widgets();
+        this.terminal_type= new Widget("Textfield ");
+        this.terminal_type.nt_parent= new Widgets("Widget ");
 
       }
       
     },
     Radio("Radio"){
       public void setType(){
-        this.terminal_type= new RadioButton();
+        this.terminal_type= new RadioButton("Radio ");
 
       }
       

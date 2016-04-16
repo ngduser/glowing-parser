@@ -4,6 +4,9 @@
  */
 
 public class Widget extends NonTerminal{
+   Widget(String content){
+     this.content= content;
+  }
   @Override
   
     public String toString(){

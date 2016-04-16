@@ -5,8 +5,12 @@
 
 public class Widgets extends NonTerminal implements NTRecursive{
   
-  Widget widget= new Widget();
+ // Widget widget= new Widget();
   Widgets widgets= null;
+  
+  Widgets(String content){
+    this.content= content;
+  }
   
   @Override  
     public String toString(){

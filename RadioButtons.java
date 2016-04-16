@@ -4,6 +4,9 @@
  */
 
 public class RadioButtons extends NonTerminal{
+   RadioButtons(String content){
+     this.content= content;
+  }
   @Override
   
     public String toString(){
