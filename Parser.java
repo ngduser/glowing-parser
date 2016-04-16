@@ -36,9 +36,12 @@ class Parser{
     NonTerminal non_terminal=null;
     while (!test_queue.isEmpty()){
       non_terminal= test_queue.remove();
-      System.out.println(non_terminal+ " Content- "+ non_terminal.content);
-      non_terminal.getChildren();
+      System.out.println(non_terminal+ "-"+ non_terminal.value+ " Content- "+ non_terminal.content);
+      System.out.println("______________");
+//     non_terminal.getChildren();
     }
+    
+    
   }
  
   //Data file selection
@@ -64,24 +67,26 @@ class Parser{
         
         if (!nt_stack.isEmpty()){
           NonTerminal non_terminal= nt_stack.peek();
-          non_terminal.content= non_terminal.content+ next+ " ";
+       }
+          
           
           if (keys.start_keys.contains(next)){
-            NonTerminal nt_child= createNT(next);
+           NonTerminal nt_child= createNT(next);
+          }
             
   //          System.out.println("Parent- "+ non_terminal+ non_terminal.value+ " opening "+ nt_child+ nt_child.value);
             
-            if ((nt_child instanceof Widget) && !(non_terminal instanceof Widget)){
+  /*          if ((nt_child instanceof Widget) && !(non_terminal instanceof Widget)){
               non_terminal.children.add(nt_child.nt_parent);
               nt_stack.push(nt_child.nt_parent);
               test_queue.add(nt_child.nt_parent);
               
               non_terminal= nt_stack.peek();
-            }
+          }
             
             else{
               while (non_terminal instanceof Widgets){
-                 System.out.println("FFFFFFFFFFClosing " + non_terminal + non_terminal.value);
+      //           System.out.println("FFFFFFFFFFClosing " + non_terminal + non_terminal.value);
                 nt_queue.add(non_terminal);
                 nt_stack.pop();
                 non_terminal= nt_stack.peek();
@@ -92,12 +97,14 @@ class Parser{
             
             nt_stack.push(nt_child);
             test_queue.add(nt_child);
-          }
+  */  //      }
           else{
+             NonTerminal non_terminal= nt_stack.peek();
+            non_terminal.content= non_terminal.content+ next+ " ";
             char[] c_next= next.toCharArray();
             for (int i= 0; i< c_next.length; i++){
               if (keys.end_keys.contains(c_next[i])){
-                non_terminal= nt_stack.pop();
+                 non_terminal= nt_stack.pop();
                 while (non_terminal instanceof NTRecursive){
                   nt_queue.add(non_terminal);
                   non_terminal= nt_stack.pop();
@@ -114,9 +121,10 @@ class Parser{
               }
             }
           }
-        }
         
-        else if (keys.start_keys.contains(next)){
+        
+       
+          if (keys.start_keys.contains(next)){
             NonTerminal nt_child= createNT(next);
             nt_stack.push(nt_child);
             test_queue.add(nt_child);
