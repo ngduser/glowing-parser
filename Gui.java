@@ -4,13 +4,14 @@
  */
 
 public class Gui extends NonTerminal{
-  Gui(String content){
-    this.content= content;
+  String type;
+  Gui(String type){
+    this.type= type;
+    this.content= type;
   }
   @Override
-  
-    public String toString(){
-    String str= new String("GUI");
-    return str;
+  public String toString(){
+    return type;
   }
+  
 }

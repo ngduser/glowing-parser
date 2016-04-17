@@ -12,19 +12,14 @@ import java.util.ArrayList;
 public abstract class NonTerminal{
   Queue children= new LinkedList();
   ArrayList<String> string_list;
-  String content;
+  String type, content;
   NonTerminal nt_parent=null;
   int value;
   
   NonTerminal(){
-    
+ 
     string_list= new ArrayList();
     value= (int) (Math.random()*100);
-  }
-  
-  public String toString(){
-    String str= new String("NONTERMINAL");
-    return str;
   }
   
   public void getChildren(){
