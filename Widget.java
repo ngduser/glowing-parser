@@ -4,8 +4,9 @@
  */
 
 public class Widget extends NonTerminal{
-   Widget(String content){
-     this.content= content;
+   Widget(String type){
+     this.type= type;
+     this.content= type;
   }
   @Override
   

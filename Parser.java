@@ -38,8 +38,11 @@ class Parser{
       non_terminal= test_queue.remove();
       System.out.println(non_terminal+ "-"+ non_terminal.value+ " Content- "+ non_terminal.content);
       System.out.println("______________");
-//     non_terminal.getChildren();
+      System.out.println("NON_TERMINTALWRDS");
+    non_terminal.getChildren();
+      
     }
+    
     
     
   }
@@ -65,13 +68,22 @@ class Parser{
       while(scan_file.hasNext()){
         String next= scan_file.next();
         
-        if (!nt_stack.isEmpty()){
-          NonTerminal non_terminal= nt_stack.peek();
-       }
+  //      if (!nt_stack.isEmpty()){
+  //        NonTerminal non_terminal= nt_stack.peek();
+  //     }
           
           
           if (keys.start_keys.contains(next)){
            NonTerminal nt_child= createNT(next);
+           if (!nt_stack.isEmpty()){
+             NonTerminal non_terminal= nt_stack.peek();
+             non_terminal.children.add(nt_child);
+           }
+           nt_stack.push(nt_child);
+           test_queue.add(nt_child);
+           
+           
+   //         
           }
             
   //          System.out.println("Parent- "+ non_terminal+ non_terminal.value+ " opening "+ nt_child+ nt_child.value);
@@ -124,11 +136,11 @@ class Parser{
         
         
        
-          if (keys.start_keys.contains(next)){
-            NonTerminal nt_child= createNT(next);
-            nt_stack.push(nt_child);
-            test_queue.add(nt_child);
-          }
+   //       if (keys.start_keys.contains(next)){
+   //         NonTerminal nt_child= createNT(next);
+   //         nt_stack.push(nt_child);
+    //        test_queue.add(nt_child);
+    //      }
       }
    }
    //Creates and returns NonTerminal object from token

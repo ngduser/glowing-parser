@@ -6,8 +6,9 @@
 public class LayoutType extends NonTerminal{
   Layout layout;
   
-  LayoutType(String content){
-    this.content= content;
+  LayoutType(String type){
+    this.type= type;
+    this.content= type;
   }
   @Override
     public String toString(){

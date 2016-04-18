@@ -4,8 +4,9 @@
  */
 
 public class Layout extends NonTerminal{
-    Layout(String content){
-    this.content= content;
+    Layout(String type){
+      this.type= type;
+      this.content= type;
   }
   @Override
   

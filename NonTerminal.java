@@ -22,6 +22,7 @@ public abstract class NonTerminal{
     value= (int) (Math.random()*100);
   }
   
+  
   public void getChildren(){
     while (!children.isEmpty()){
       System.out.print(" "+ children.remove());
