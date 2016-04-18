@@ -14,5 +14,5 @@ public class Gui extends NonTerminal{
     String str= new String("GUI");
     return str;
  }
-  
+ 
 }

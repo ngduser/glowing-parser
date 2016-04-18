@@ -37,14 +37,8 @@ class Parser{
     while (!test_queue.isEmpty()){
       non_terminal= test_queue.remove();
       System.out.println(non_terminal+ "-"+ non_terminal.value+ " Content- "+ non_terminal.content);
-      System.out.println("______________");
-      System.out.println("NON_TERMINTALWRDS");
-    non_terminal.getChildren();
-      
+      non_terminal.getChildren();
     }
-    
-    
-    
   }
  
   //Data file selection
@@ -67,12 +61,7 @@ class Parser{
    public void scanFile(Scanner scan_file){
       while(scan_file.hasNext()){
         String next= scan_file.next();
-        
-  //      if (!nt_stack.isEmpty()){
-  //        NonTerminal non_terminal= nt_stack.peek();
-  //     }
-          
-          
+       
           if (keys.start_keys.contains(next)){
            NonTerminal nt_child= createNT(next);
            if (!nt_stack.isEmpty()){
@@ -81,35 +70,9 @@ class Parser{
            }
            nt_stack.push(nt_child);
            test_queue.add(nt_child);
-           
-           
-   //         
+     
           }
-            
-  //          System.out.println("Parent- "+ non_terminal+ non_terminal.value+ " opening "+ nt_child+ nt_child.value);
-            
-  /*          if ((nt_child instanceof Widget) && !(non_terminal instanceof Widget)){
-              non_terminal.children.add(nt_child.nt_parent);
-              nt_stack.push(nt_child.nt_parent);
-              test_queue.add(nt_child.nt_parent);
-              
-              non_terminal= nt_stack.peek();
-          }
-            
-            else{
-              while (non_terminal instanceof Widgets){
-      //           System.out.println("FFFFFFFFFFClosing " + non_terminal + non_terminal.value);
-                nt_queue.add(non_terminal);
-                nt_stack.pop();
-                non_terminal= nt_stack.peek();
-              }
-            }
-             
-            non_terminal.children.add(nt_child);
-            
-            nt_stack.push(nt_child);
-            test_queue.add(nt_child);
-  */  //      }
+          
           else{
              NonTerminal non_terminal= nt_stack.peek();
             non_terminal.content= non_terminal.content+ next+ " ";
@@ -133,25 +96,13 @@ class Parser{
               }
             }
           }
-        
-        
-       
-   //       if (keys.start_keys.contains(next)){
-   //         NonTerminal nt_child= createNT(next);
-   //         nt_stack.push(nt_child);
-    //        test_queue.add(nt_child);
-    //      }
       }
    }
    //Creates and returns NonTerminal object from token
    private NonTerminal createNT(String next){
      Tokens token= Tokens.getName(next);
      token.setType();
-   //  if ((token.terminal_type instanceof Widget){
-     
-     System.out.println("Opening "+ token.terminal_type+ token.terminal_type.value+ " with "+ next);
+
      return token.terminal_type;
-   
-   }
-  
+   }  
 }

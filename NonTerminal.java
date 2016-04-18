@@ -10,22 +10,22 @@ import java.util.ArrayList;
 
 
 public abstract class NonTerminal{
-  Queue children= new LinkedList();
-  ArrayList<String> string_list;
+  Queue<NonTerminal> children= new LinkedList<>();
+
   String type, content;
   NonTerminal nt_parent=null;
   int value;
   
   NonTerminal(){
  
-    string_list= new ArrayList();
+   // string_list= new ArrayList();
     value= (int) (Math.random()*100);
   }
   
   
   public void getChildren(){
-    while (!children.isEmpty()){
-      System.out.print(" "+ children.remove());
+    for (NonTerminal child : children){
+      System.out.println(type+"  "+child);
     }
   }
 }
