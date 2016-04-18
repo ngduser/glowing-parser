@@ -63,10 +63,10 @@ class Parser{
         String next= scan_file.next();
        
           if (keys.start_keys.contains(next)){
-           NonTerminal nt_child= createNT(next);
-           if (!nt_stack.isEmpty()){
+            NonTerminal nt_child= createNT(next);
+          if (!nt_stack.isEmpty()){
              NonTerminal non_terminal= nt_stack.peek();
-             non_terminal.children.add(nt_child);
+             non_terminal.content= non_terminal.content+ next+ " ";
            }
            nt_stack.push(nt_child);
            test_queue.add(nt_child);
@@ -75,23 +75,34 @@ class Parser{
           
           else{
              NonTerminal non_terminal= nt_stack.peek();
-            non_terminal.content= non_terminal.content+ next+ " ";
+             if (non_terminal instanceof NTRecursive){
+               NonTerminal child= non_terminal.children.peek();
+               child.content= child.content+ next+ " ";
+             }
+             else{
+               non_terminal.content= non_terminal.content+ next+ " ";
+             }
+             
             char[] c_next= next.toCharArray();
             for (int i= 0; i< c_next.length; i++){
               if (keys.end_keys.contains(c_next[i])){
-                 non_terminal= nt_stack.pop();
-                while (non_terminal instanceof NTRecursive){
-                  nt_queue.add(non_terminal);
+                
+                if (non_terminal instanceof NTRecursive){
+                    nt_queue.add(non_terminal.children.peek());
+                    non_terminal= nt_stack.pop();
+                }
+             //   }
+                else{
                   non_terminal= nt_stack.pop();
                 }
-                
-                System.out.println("Closing " + non_terminal + non_terminal.value+ " with "+ c_next[i]);
+          //      System.out.println("Closing " + non_terminal + non_terminal.value+"  "+ non_terminal.type+ " with "+ c_next[i]);
                 if (!nt_stack.isEmpty()){
-                  NonTerminal parent= nt_stack.peek();
-                  parent.children.add(non_terminal);
-                }
+                 NonTerminal parent= nt_stack.peek();
+                parent.children.add(non_terminal);
+                
+             }
               
-                nt_queue.add(non_terminal);
+         //       nt_queue.add(non_terminal);
               
               }
             }

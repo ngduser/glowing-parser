@@ -32,32 +32,36 @@ public enum Tokens{
     */
     Button("Button"){
       public void setType(){
-       this.terminal_type= new Widget("Button ");
-       this.terminal_type.nt_parent= new Widgets("Widget ");
+       this.terminal_type= new Widgets("Widgets ");
+       this.child= new Widget("Button ");
+       this.terminal_type.children.add(child);
 
       }
       
     },
     Group("Group"){
       public void setType(){
-        this.terminal_type= new Widget("Group ");
-        this.terminal_type.nt_parent= new Widgets("Widget ");
+        this.terminal_type= new Widgets("Widgets ");
+        this.child= new Widget("Group ");
+        this.terminal_type.children.add(child);
 
       }
       
     },
     Label("Label"){
       public void setType(){
-        this.terminal_type= new Widget("Label ");
-        this.terminal_type.nt_parent= new Widgets("Widget ");
+        this.terminal_type= new Widgets("Widgets ");
+        this.child= new Widget("Label ");
+        this.terminal_type.children.add(child);
 
       }
       
     },
     Panel("Panel"){
       public void setType(){
-        this.terminal_type= new Widget("Panel ");
-        this.terminal_type.nt_parent= new Widgets("Widget ");
+        this.terminal_type= new Widgets("Widgets ");
+        this.child= new Widget("Panel ");
+        this.terminal_type.children.add(child);
         
 
       }
@@ -65,8 +69,9 @@ public enum Tokens{
     },
     Textfield("Textfield"){
       public void setType(){
-        this.terminal_type= new Widget("Textfield ");
-        this.terminal_type.nt_parent= new Widgets("Widget ");
+        this.terminal_type= new Widgets("Widgets ");
+        this.child= new Widget("Textfield ");
+        this.terminal_type.children.add(child);
 
       }
       
@@ -79,7 +84,7 @@ public enum Tokens{
       
     };
     
-    NonTerminal terminal_type;
+    NonTerminal terminal_type, child;
     public abstract void setType();
     
     private final String token_type;
