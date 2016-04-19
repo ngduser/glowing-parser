@@ -57,12 +57,11 @@ class Parser{
       return null;
     }
   }
-  
    //Parses data file and builds tree
    public void scanFile(Scanner scan_file){
       while(scan_file.hasNext()){
         String next= scan_file.next();
-       
+        
           if (keys.start_keys.contains(next)){
             NonTerminal nt_child= createNT(next);
    
@@ -73,29 +72,33 @@ class Parser{
           
           else{
              NonTerminal non_terminal= nt_stack.peek();
+             
              if (non_terminal instanceof NTRecursive){
-               NonTerminal child= non_terminal.children.peek();
-               child.content= child.content+ next+ " ";
+     //          NonTerminal child= non_terminal.children.peek();
+     //          child.content= child.content+ next+ " ";
+                 non_terminal= non_terminal.children.peek();
              }
-             else{
+      //       else{
                non_terminal.content= non_terminal.content+ next+ " ";
-             }
+       //      }
              
             char[] c_next= next.toCharArray();
             for (int i= 0; i< c_next.length; i++){
               if (keys.end_keys.contains(c_next[i])){
                 
-                if (non_terminal instanceof NTRecursive){
-                    nt_queue.add(non_terminal.children.peek());
-                    non_terminal= nt_stack.pop();
-                }
+  //              if (non_terminal instanceof NTRecursive){
+   //                 nt_queue.add(non_terminal.children.peek());
+    //                non_terminal= nt_stack.pop();
+     //           }
             
-                else{
+     //           else{
+       
                   non_terminal= nt_stack.pop();
-                }
+       //         }
+                
                 if (!nt_stack.isEmpty()){
                  NonTerminal parent= nt_stack.peek();
-                parent.children.add(non_terminal);
+                 parent.children.add(non_terminal);
                 }
               }
             }

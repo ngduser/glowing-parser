@@ -25,7 +25,10 @@ public class RadioButton extends NonTerminal{
 
     Pattern pattern= Pattern.compile(format);
     Matcher match_format= pattern.matcher(content);
-    if (match_format.find()){
+    if (!match_format.find()){
+      System.out.println("Error!");
+    }
+    else{
         s_1= match_format.group(1);
     }
   }

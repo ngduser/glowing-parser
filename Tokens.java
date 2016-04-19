@@ -32,7 +32,6 @@ public enum Tokens{
         this.terminal_type= new Widgets("Widgets ");
         this.child= new Widget("Label ");
         this.terminal_type.children.add(child);
-     //   this.terminal_type.widget= child;
       }
     },
     Panel("Panel"){

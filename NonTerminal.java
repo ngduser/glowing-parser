@@ -14,13 +14,7 @@ public abstract class NonTerminal{
 
   String type, content;
   NonTerminal nt_parent=null;
-  int value;
-  
-  NonTerminal(){
- 
-   // string_list= new ArrayList();
-    value= (int) (Math.random()*100);
-  }
+
   
   public void ntCheck(){
     System.out.println("Narn");
@@ -28,7 +22,7 @@ public abstract class NonTerminal{
   
   public void getChildren(){
     for (NonTerminal child : children){
-      System.out.println(type+"  "+child);
+      System.out.println(type+"a "+child);
     }
   }
 }

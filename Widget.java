@@ -2,11 +2,13 @@
  * April 14, 2016
  * NonTerminal Class for Widget
  */
+import java.util.regex.*;
 
 public class Widget extends NonTerminal{
+  private String s_1;
    Widget(String type){
      this.type= type;
-     this.content= type;
+     content= type;
   }
   @Override
     public String toString(){
@@ -20,7 +22,7 @@ public class Widget extends NonTerminal{
     
     switch(type){
       case "Button ":
-        format= "Button.*?((?:[a-z][a-z]+));";
+        format= "Button.*?(\".*?\");";
         break;
 
       case "Group ":
@@ -28,7 +30,7 @@ public class Widget extends NonTerminal{
         break;
         
       case "Label ":
-        format= "Label.*?((?:[a-z][a-z]+)).*?;";
+        format= "Label.*?(\".*?\").*?;";
         break;
      
       case "Panel ":
@@ -44,11 +46,29 @@ public class Widget extends NonTerminal{
     }
     
     System.out.println(format);
-        
- /*       Pattern pattern= Pattern.compile(format);
-    Matcher match_format= pattern.matcher(content);
-    if (match_format.find()){
-        s_1= match_format.group(1);
-  */
   }
-}
+  
+  private void matchPattern(String format, boolean out){
+        
+    Pattern pattern= Pattern.compile(format);
+    Matcher match_format= pattern.matcher(content);
+    if (!match_format.find()){
+       System.out.println(type+ "- ERROR!!!");
+    }
+    else{
+      s_1= match_format.group(1);
+    }
+    
+  }
+  private void matchPattern(String format){
+        
+    Pattern pattern= Pattern.compile(format);
+    Matcher match_format= pattern.matcher(content);
+    if (!match_format.find()){
+       System.out.println(type+ "- ERROR!!!");
+    }
+
+    }
+ 
+  }
+
