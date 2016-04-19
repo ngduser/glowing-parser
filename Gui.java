@@ -17,7 +17,7 @@ public class Gui extends NonTerminal{
  }
  
  @Override
- public void testNT(){
+ public void ntCheck(){
     String format=".*?Window.*?((?:[a-z][a-z]+)).*?(\\d+).*?(\\d+)"; 
 
     Pattern pattern= Pattern.compile(format,Pattern.CASE_INSENSITIVE);

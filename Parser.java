@@ -36,11 +36,11 @@ class Parser{
     NonTerminal non_terminal=null;
     while (!test_queue.isEmpty()){
       non_terminal= test_queue.remove();
-      if (non_terminal instanceof Gui){
-        non_terminal.testNT();
+      if (non_terminal instanceof Layout){
+        non_terminal.ntCheck();
       }
-      System.out.println(non_terminal+ "-"+ non_terminal.value+ " Content- "+ non_terminal.content);
-      non_terminal.getChildren();
+ //     System.out.println(non_terminal+ "-"+ non_terminal.value+ " Content- "+ non_terminal.content);
+  //    non_terminal.getChildren();
     }
   }
  
@@ -98,7 +98,6 @@ class Parser{
                 else{
                   non_terminal= nt_stack.pop();
                 }
-          //      System.out.println("Closing " + non_terminal + non_terminal.value+"  "+ non_terminal.type+ " with "+ c_next[i]);
                 if (!nt_stack.isEmpty()){
                  NonTerminal parent= nt_stack.peek();
                 parent.children.add(non_terminal);

@@ -22,7 +22,7 @@ public abstract class NonTerminal{
     value= (int) (Math.random()*100);
   }
   
-  public void testNT(){};
+  public void ntCheck(){};
   
   public void getChildren(){
     for (NonTerminal child : children){
