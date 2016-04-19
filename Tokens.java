@@ -11,33 +11,14 @@ public enum Tokens{
     Layout("Layout"){
       public void setType(){
         this.terminal_type= new Layout("Layout ");
-        
-
       }
     },
- /*   Flow("Flow:"){
-      public void setType(){
-        this.terminal_type= new LayoutType();
-
-      }
-      
-    },
-    Grid("Grid"){
-      public void setType(){
-        this.terminal_type= new LayoutType();
-
-      }
-      
-    },
-    */
     Button("Button"){
       public void setType(){
        this.terminal_type= new Widgets("Widgets ");
        this.child= new Widget("Button ");
        this.terminal_type.children.add(child);
-
       }
-      
     },
     Group("Group"){
       public void setType(){
@@ -53,37 +34,27 @@ public enum Tokens{
         this.terminal_type= new Widgets("Widgets ");
         this.child= new Widget("Label ");
         this.terminal_type.children.add(child);
-
       }
-      
     },
     Panel("Panel"){
       public void setType(){
         this.terminal_type= new Widgets("Widgets ");
         this.child= new Widget("Panel ");
         this.terminal_type.children.add(child);
-        
-
       }
-      
     },
     Textfield("Textfield"){
       public void setType(){
         this.terminal_type= new Widgets("Widgets ");
         this.child= new Widget("Textfield ");
         this.terminal_type.children.add(child);
-
       }
-      
     },
     Radio("Radio"){
       public void setType(){
         this.terminal_type= new RadioButton("Radio ");
-
       }
-      
     };
-    
     NonTerminal terminal_type, child;
     public abstract void setType();
     

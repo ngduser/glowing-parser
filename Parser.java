@@ -36,11 +36,9 @@ class Parser{
     NonTerminal non_terminal=null;
     while (!test_queue.isEmpty()){
       non_terminal= test_queue.remove();
-      if (non_terminal instanceof Layout){
+      if (non_terminal instanceof Layout || non_terminal instanceof Gui){
         non_terminal.ntCheck();
       }
- //     System.out.println(non_terminal+ "-"+ non_terminal.value+ " Content- "+ non_terminal.content);
-  //    non_terminal.getChildren();
     }
   }
  
@@ -67,10 +65,7 @@ class Parser{
        
           if (keys.start_keys.contains(next)){
             NonTerminal nt_child= createNT(next);
-       //   if (!nt_stack.isEmpty()){
-         //    NonTerminal non_terminal= nt_stack.peek();
-          //   non_terminal.content= non_terminal.content+ next+ " ";
-          // }
+   
            nt_stack.push(nt_child);
            test_queue.add(nt_child);
      
@@ -94,15 +89,14 @@ class Parser{
                     nt_queue.add(non_terminal.children.peek());
                     non_terminal= nt_stack.pop();
                 }
-             //   }
+            
                 else{
                   non_terminal= nt_stack.pop();
                 }
                 if (!nt_stack.isEmpty()){
                  NonTerminal parent= nt_stack.peek();
                 parent.children.add(non_terminal);
-                
-             }
+                }
               }
             }
           }

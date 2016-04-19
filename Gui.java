@@ -26,6 +26,8 @@ public class Gui extends NonTerminal{
         String s_1= match_format.group(1);
         String i_1= match_format.group(2);
         String i_2= match_format.group(3);
+        
+        System.out.println(s_1+" is 1"+ i_1+" is i1"+i_2+" is i2");
     }
     else{
       System.out.println("Syntax error with "+ type+ " input!");
