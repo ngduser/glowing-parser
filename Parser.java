@@ -34,12 +34,16 @@ class Parser{
   //Test method to output structure
   public void testQueue(){
     NonTerminal non_terminal=null;
+    Gui temp=null;
     while (!test_queue.isEmpty()){
       non_terminal= test_queue.remove();
-        System.out.print(non_terminal.type+ "- ");
-        non_terminal.ntCheck();
+      if (non_terminal instanceof Gui){
+        temp= (Gui) non_terminal;
+      }
+        
       
     }
+    temp.ntCheck();
   }
  
   //Data file selection
@@ -86,19 +90,19 @@ class Parser{
             for (int i= 0; i< c_next.length; i++){
               if (keys.end_keys.contains(c_next[i])){
                 
-  //              if (non_terminal instanceof NTRecursive){
-   //                 nt_queue.add(non_terminal.children.peek());
-    //                non_terminal= nt_stack.pop();
-     //           }
-            
-     //           else{
-       
+                if (non_terminal instanceof NTRecursive && !(non_terminal.type.equals("Panel "))){
+                   nt_queue.add(non_terminal.children.peek());
                   non_terminal= nt_stack.pop();
-       //         }
+             }
+            
+             else{
                 
+                  non_terminal= nt_stack.pop();
+             }            
                 if (!nt_stack.isEmpty()){
                  NonTerminal parent= nt_stack.peek();
                  parent.children.add(non_terminal);
+                 System.out.println(non_terminal.type+ " added to "+ parent.type);
                 }
               }
             }

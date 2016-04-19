@@ -26,13 +26,16 @@ public class Layout extends NonTerminal{
     return str;
   }
   
-  @Override
-  public void ntCheck(){
+ 
+  public JPanel ntCheck(){
     String flow_format= "Layout Flow: ";
     String grid_format= "Layout.*?Grid.(\\d+)..*?(\\d+)..*?(\\d+)..*?(\\d+)..";
 
     Pattern pattern = Pattern.compile(grid_format,Pattern.CASE_INSENSITIVE);
     Matcher match_format = pattern.matcher(content);
+    
+    JPanel jp=null;
+    
     if (!match_format.find() && !content.equals(flow_format)){
       System.out.println("ERROR!- "+ content);
     }
@@ -41,28 +44,23 @@ public class Layout extends NonTerminal{
         i_2= match_format.group(2);
         i_3= match_format.group(3);
         i_4= match_format.group(4);
-        flow= false;
-    }
-  }
-
- public JPanel build(){
-    JPanel jp;
-    
-    if (flow= true){
-      jp= new JPanel(new FlowLayout());
-    }
-    
-    else{
-      int rows= Integer.parseInt(i_1);
+        int rows= Integer.parseInt(i_1);
       int cols= Integer.parseInt(i_2);
       int hor_gap= Integer.parseInt(i_3);
       int ver_gap= Integer.parseInt(i_4);
       
       jp= new JPanel(new GridLayout(rows, cols, hor_gap, ver_gap));
+      System.out.println("MEMEMEM");
+      
     }
-    
+    else{
+      jp= new JPanel(new FlowLayout());
+    }
+  
+
     return jp;
- }
+  }
+
 }
   
   

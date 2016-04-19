@@ -8,6 +8,7 @@ import java.awt.*;
 
 public class Widget extends NonTerminal{
   private String s_1;
+  public Layout layout;
   
    Widget(String type){
      this.type= type;
@@ -19,50 +20,7 @@ public class Widget extends NonTerminal{
     String str= new String("Widget");
     return str;
   }
-  
-  @Override
-  public void ntCheck(){
-    Matcher match_format= null;
-    
-    String format;
-    
-    switch(type){
-      case "Button ":
-        format= "Button.*?(\".*?\");";
-        match_format= matchPattern(format);
-        s_1= match_format.group(1);
-   
-        break;
-
-      case "Group ":
-        format= "Group End;";
-        matchPattern(format);
-        break;
-        
-      case "Label ":
-        format= "Label.*?(\".*?\").*?;";
-        match_format= matchPattern(format);
-        s_1= match_format.group(1);       
-        break;
-     
-      case "Panel ":
-        format= "Panel End;";
-        matchPattern(format);
-        break;
-        
-      case "Textfield ":
-        format= "Textfield.*?(\\d+);";
-        match_format= matchPattern(format);
-        s_1= match_format.group(1);
-        break;
-        
-      default:
-        throw new IllegalArgumentException("Invalid Widget");
-    }
-    
-    System.out.println(format);
-  }
-  
+ 
   private Matcher matchPattern(String format){
         
     Pattern pattern= Pattern.compile(format);
@@ -73,7 +31,8 @@ public class Widget extends NonTerminal{
     return match_format;
   }
   
-  public JComponent build(){
+  
+  public JComponent ntCheck(){
     JComponent jc_widget=null;
     Matcher match_format= null;
     
@@ -81,7 +40,7 @@ public class Widget extends NonTerminal{
     
     switch(type){
       case "Button ":
-        format= "Button.*?(\".*?\");";
+        format= "Button.*?\"(.*?)\";";
         match_format= matchPattern(format);
         s_1= match_format.group(1);
         
@@ -95,7 +54,7 @@ public class Widget extends NonTerminal{
         break;
         
       case "Label ":
-        format= "Label.*?(\".*?\").*?;";
+        format= "Label.*?\"(.*?)\".*?;";
         match_format= matchPattern(format);
         s_1= match_format.group(1); 
         
@@ -106,13 +65,10 @@ public class Widget extends NonTerminal{
       case "Panel ":
         format= "Panel End;";
         matchPattern(format);
+       // JPanel jc_widget= JPanel.setLayout(layout.ntCheck());
+      System.out.println("LAYOURWE TEST -"+ layout.content);
+        jc_widget= layout.ntCheck();
         
-        Layout layout= (Layout) children.remove();
-        jc_widget= layout.build();
-        
-        System.out.println(children.remove().type+ "JJJJJJJJJJJJJJJJJJ");
-        
-        /////////////////////////////////////////////////////////////////////
         break;
         
       case "Textfield ":

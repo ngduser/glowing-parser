@@ -15,15 +15,6 @@ public abstract class NonTerminal{
   String type, content;
   NonTerminal nt_parent=null;
 
-  
-  public void ntCheck(){
-    System.out.println("Narn");
-  }
- // public Object build(){
- //   System.out.println("Default");
-  //  return content;
- // }
-  
   public void getChildren(){
     for (NonTerminal child : children){
       System.out.println(type+"a "+child);

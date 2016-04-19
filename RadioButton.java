@@ -19,8 +19,7 @@ public class RadioButton extends NonTerminal{
     return str;
   }
   
-  @Override
-  public void ntCheck(){
+  public Object ntCheck(){
     String format="Radio.*?((?:[a-z][a-z]+));"; 
 
     Pattern pattern= Pattern.compile(format);
@@ -31,5 +30,6 @@ public class RadioButton extends NonTerminal{
     else{
         s_1= match_format.group(1);
     }
+    return format;
   }
 }
