@@ -36,9 +36,9 @@ class Parser{
     NonTerminal non_terminal=null;
     while (!test_queue.isEmpty()){
       non_terminal= test_queue.remove();
-      if (non_terminal instanceof Layout || non_terminal instanceof Gui){
+        System.out.print(non_terminal.type+ "- ");
         non_terminal.ntCheck();
-      }
+      
     }
   }
  

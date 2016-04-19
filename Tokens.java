@@ -25,15 +25,14 @@ public enum Tokens{
         this.terminal_type= new Widgets("Widgets ");
         this.child= new Widget("Group ");
         this.terminal_type.children.add(child);
-
       }
-      
     },
     Label("Label"){
       public void setType(){
         this.terminal_type= new Widgets("Widgets ");
         this.child= new Widget("Label ");
         this.terminal_type.children.add(child);
+     //   this.terminal_type.widget= child;
       }
     },
     Panel("Panel"){

@@ -20,7 +20,7 @@ public class Gui extends NonTerminal{
  public void ntCheck(){
     String format=".*?Window.*?((?:[a-z][a-z]+)).*?(\\d+).*?(\\d+)"; 
 
-    Pattern pattern= Pattern.compile(format,Pattern.CASE_INSENSITIVE);
+    Pattern pattern= Pattern.compile(format);
     Matcher match_format= pattern.matcher(content);
     if (match_format.find()){
         String s_1= match_format.group(1);
