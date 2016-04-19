@@ -19,6 +19,10 @@ public abstract class NonTerminal{
   public void ntCheck(){
     System.out.println("Narn");
   }
+ // public Object build(){
+ //   System.out.println("Default");
+  //  return content;
+ // }
   
   public void getChildren(){
     for (NonTerminal child : children){

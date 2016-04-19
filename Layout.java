@@ -3,9 +3,12 @@
  * NonTerminal Class for Layout
  */
 import java.util.regex.*;
+import java.awt.*;
+import javax.swing.*;
 
 public class Layout extends NonTerminal{
   private String i_1, i_2, i_3, i_4;
+  Boolean flow;
   
   Layout(String type){
       this.type= type;
@@ -14,6 +17,7 @@ public class Layout extends NonTerminal{
       i_2= "";
       i_3= "";
       i_4= "";
+      flow= true;
   }
   @Override
   
@@ -37,9 +41,28 @@ public class Layout extends NonTerminal{
         i_2= match_format.group(2);
         i_3= match_format.group(3);
         i_4= match_format.group(4);
-        System.out.print(i_1+" "+i_2+ " "+i_3+ " " + i_4);
+        flow= false;
     }
   }
+
+ public JPanel build(){
+    JPanel jp;
+    
+    if (flow= true){
+      jp= new JPanel(new FlowLayout());
+    }
+    
+    else{
+      int rows= Integer.parseInt(i_1);
+      int cols= Integer.parseInt(i_2);
+      int hor_gap= Integer.parseInt(i_3);
+      int ver_gap= Integer.parseInt(i_4);
+      
+      jp= new JPanel(new GridLayout(rows, cols, hor_gap, ver_gap));
+    }
+    
+    return jp;
+ }
 }
   
   
