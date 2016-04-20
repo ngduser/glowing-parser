@@ -1,4 +1,4 @@
-/* Gui.java
+/* LayoutType.java
  * April 14, 2016
  * NonTerminal Class for Layout Type
  */
@@ -10,7 +10,9 @@ public class LayoutType extends NonTerminal{
     this.type= type;
     this.content= type;
   }
-  @Override
+  
+    //Custom toString
+    @Override
     public String toString(){
     String str= new String("Layout Type");
     return str;
