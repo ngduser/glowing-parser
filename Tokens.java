@@ -1,105 +1,93 @@
+/* Tokens.java
+ * April 14, 2016
+ * Enumurated class for nonterminal types
+ */
 import java.util.Map;
 import java.util.HashMap;
 
-public enum Tokens{
+public enum Tokens {
 
-    Window("Window"){
-      public void setType(){
-        this.terminal_type= new Gui("Window ");
-      }
-    },
-    Layout("Layout"){
-      public void setType(){
-        this.terminal_type= new Layout("Layout ");
-        
-
-      }
-    },
- /*   Flow("Flow:"){
-      public void setType(){
-        this.terminal_type= new LayoutType();
-
-      }
-      
-    },
-    Grid("Grid"){
-      public void setType(){
-        this.terminal_type= new LayoutType();
-
-      }
-      
-    },
-    */
-    Button("Button"){
-      public void setType(){
-       this.terminal_type= new Widgets("Widgets ");
-       this.child= new Widget("Button ");
-       this.terminal_type.children.add(child);
-
-      }
-      
-    },
-    Group("Group"){
-      public void setType(){
-        this.terminal_type= new Widgets("Widgets ");
-        this.child= new Widget("Group ");
-        this.terminal_type.children.add(child);
-
-      }
-      
-    },
-    Label("Label"){
-      public void setType(){
-        this.terminal_type= new Widgets("Widgets ");
-        this.child= new Widget("Label ");
-        this.terminal_type.children.add(child);
-
-      }
-      
-    },
-    Panel("Panel"){
-      public void setType(){
-        this.terminal_type= new Widgets("Widgets ");
-        this.child= new Widget("Panel ");
-        this.terminal_type.children.add(child);
-        
-
-      }
-      
-    },
-    Textfield("Textfield"){
-      public void setType(){
-        this.terminal_type= new Widgets("Widgets ");
-        this.child= new Widget("Textfield ");
-        this.terminal_type.children.add(child);
-
-      }
-      
-    },
-    Radio("Radio"){
-      public void setType(){
-        this.terminal_type= new RadioButton("Radio ");
-
-      }
-      
-    };
+  //Enum for all the different types for each class  
+  Window("Window") {
+                @Override
+                public void setType() {
+                    this.terminal_type = new Gui("Window ");
+                }
+            },
+    Layout("Layout") {
+                @Override
+                public void setType() {
+                    this.terminal_type = new Layout("Layout ");
+                }
+            },
     
+    //Widgets are recursive productions but only signified by a widget, so a widget makes both classes
+    //and inserts itself as a child to a Widgets parent
+    Button("Button") {
+                @Override
+                public void setType() {
+                    this.terminal_type = new Widgets("Widgets ");
+                    this.child = new Widget("Button ");
+                    this.terminal_type.children.add(child);
+                }
+            },
+    Group("Group") {
+                @Override
+                public void setType() {
+                    this.terminal_type = new Widgets("Widgets ");
+                    this.child = new Widget("Group ");
+                    this.terminal_type.children.add(child);
+                }
+            },
+    Label("Label") {
+                @Override
+                public void setType() {
+                    this.terminal_type = new Widgets("Widgets ");
+                    this.child = new Widget("Label ");
+                    this.terminal_type.children.add(child);
+                }
+            },
+    Panel("Panel") {
+                @Override
+                public void setType() {
+                    this.terminal_type = new Widgets("Widgets ");
+                    this.child = new Widget("Panel ");
+                    this.terminal_type.children.add(child);
+                }
+            },
+    Textfield("Textfield") {
+                @Override
+                public void setType() {
+                    this.terminal_type = new Widgets("Widgets ");
+                    this.child = new Widget("Textfield ");
+                    this.terminal_type.children.add(child);
+                }
+            },
+    Radio("Radio") {
+                @Override
+                public void setType() {
+                    this.terminal_type = new RadioButton("Radio ");
+                }
+            };
+    //Shared fields
     NonTerminal terminal_type, child;
-    public abstract void setType();
     
+    //Public method called by parser.java
+    public abstract void setType();
+
     private final String token_type;
     static Map<String, Tokens> map = new HashMap<>();
-    
-    private Tokens(String token_type){
-      this.token_type= token_type;
+
+    //Default constructor for each ewnum
+    private Tokens(String token_type) {
+        this.token_type = token_type;
     }
-    
     static {
-       for (Tokens token: Tokens.values()) {
-          map.put(token.token_type, token);
-       }
+        for (Tokens token : Tokens.values()) {
+            map.put(token.token_type, token);
+        }
     }
-    public static Tokens getName(String name) {
-       return map.get(name);
+     public static Tokens getName(String name) {
+        return map.get(name);
     }
- }
+}
